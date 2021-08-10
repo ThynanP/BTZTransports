@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BTZModelStoreContainer" CdmEntityContainer="BTZ_Entities_">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="BTZModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TbAbastecimentos">
+      <EntityTypeMapping TypeName="BTZModel.TbAbastecimentos">
+        <MappingFragment StoreEntitySet="TbAbastecimentos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idVeiculo" ColumnName="idVeiculo" />
+          <ScalarProperty Name="idMotorista" ColumnName="idMotorista" />
+          <ScalarProperty Name="abastecimentoDate" ColumnName="abastecimentoDate" />
+          <ScalarProperty Name="idCombustivel" ColumnName="idCombustivel" />
+          <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+          <ScalarProperty Name="observacoes" ColumnName="observacoes" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TbCarro">
+      <EntityTypeMapping TypeName="BTZModel.TbCarro">
+        <MappingFragment StoreEntitySet="TbCarro">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="placa" ColumnName="placa" />
+          <ScalarProperty Name="idCombustivel" ColumnName="idCombustivel" />
+          <ScalarProperty Name="idFabricante" ColumnName="idFabricante" />
+          <ScalarProperty Name="ano_fab" ColumnName="ano_fab" />
+          <ScalarProperty Name="cap_max" ColumnName="cap_max" />
+          <ScalarProperty Name="observacoes" ColumnName="observacoes" />
+          <ScalarProperty Name="statusId" ColumnName="statusId" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TbMotorista">
+      <EntityTypeMapping TypeName="BTZModel.TbMotorista">
+        <MappingFragment StoreEntitySet="TbMotorista">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="CPF" ColumnName="CPF" />
+          <ScalarProperty Name="CNH" ColumnName="CNH" />
+          <ScalarProperty Name="categoriaCNH" ColumnName="categoriaCNH" />
+          <ScalarProperty Name="nascDate" ColumnName="nascDate" />
+          <ScalarProperty Name="statusId" ColumnName="statusId" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TbTipoCombustivel">
+      <EntityTypeMapping TypeName="BTZModel.TbTipoCombustivel">
+        <MappingFragment StoreEntitySet="TbTipoCombustivel">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TbTipoFabricante">
+      <EntityTypeMapping TypeName="BTZModel.TbTipoFabricante">
+        <MappingFragment StoreEntitySet="TbTipoFabricante">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TbTipoStatus">
+      <EntityTypeMapping TypeName="BTZModel.TbTipoStatus">
+        <MappingFragment StoreEntitySet="TbTipoStatus">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TbTipoStatusCar">
+      <EntityTypeMapping TypeName="BTZModel.TbTipoStatusCar">
+        <MappingFragment StoreEntitySet="TbTipoStatusCar">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TbTipoUser">
+      <EntityTypeMapping TypeName="BTZModel.TbTipoUser">
+        <MappingFragment StoreEntitySet="TbTipoUser">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbUser">
+      <EntityTypeMapping TypeName="BTZModel.tbUser">
+        <MappingFragment StoreEntitySet="tbUser">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+          <ScalarProperty Name="tipoId" ColumnName="tipoId" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

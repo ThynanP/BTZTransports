@@ -1,0 +1,78 @@
+﻿@model BTZ_Transports.Models.IndexPage
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <img src="https://i1.wp.com/terracoeconomico.com.br/wp-content/uploads/2019/01/default-user-image.png?ssl=1" alt="userImage" width="50" height="50">
+    <p>@Model.nomeUsuario</p>
+    <a href = '@(Url.Action("Logoff", "Home"))'>Sair</a>
+</div>
+
+<div class="row">
+    <button type="button" onclick="location.href = '@(Url.Action("AbastecimentoRegister", "Home", new { id = 0 }))'">Novo</button>
+    <table id="abastecimentos">
+        <tr>
+            <th>Id</th>
+            <th>Veiculo</th>
+            <th>Motorista</th>
+            <th>Quantidade</th>
+            <th>Data</th>
+            <th>Total</th>
+        </tr>
+        @foreach (var item in Model.abastecimentos)
+        {
+            <tr class='clickable-row' onclick="location.href = '@(Url.Action("AbastecimentoRegister", "Home", new { id = item.id }))'">
+                <td>@item.id</td>
+                <td>@Model.carros.Where(a => a.id == item.idVeiculo).FirstOrDefault().nome</td>
+                <td>@Model.motoristas.Where(a => a.id == item.idMotorista).FirstOrDefault().nome</td>
+                <td>@item.quantidade</td>
+                <td>@item.abastecimentoDate</td>
+                <td>@item.Total</td>
+            </tr>
+        }
+    </table>
+</div>
+
+<style>
+    #abastecimentos {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #abastecimentos td, #abastecimentos th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #abastecimentos tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #abastecimentos tr:hover {
+            background-color: #ddd;
+        }
+
+        #abastecimentos th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    button {
+        width: 150px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        button:hover {
+            background-color: #45a049;
+        }
+</style>

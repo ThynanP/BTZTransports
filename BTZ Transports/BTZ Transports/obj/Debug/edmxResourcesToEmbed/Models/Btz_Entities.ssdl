@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BTZModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TbAbastecimentos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idVeiculo" Type="int" Nullable="false" />
+    <Property Name="idMotorista" Type="int" Nullable="false" />
+    <Property Name="abastecimentoDate" Type="datetime" Nullable="false" />
+    <Property Name="idCombustivel" Type="int" Nullable="false" />
+    <Property Name="quantidade" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="observacoes" Type="varchar" MaxLength="255" />
+    <Property Name="createDate" Type="datetime" Nullable="false" />
+    <Property Name="updateDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TbCarro">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="placa" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="idCombustivel" Type="int" Nullable="false" />
+    <Property Name="idFabricante" Type="int" Nullable="false" />
+    <Property Name="ano_fab" Type="int" Nullable="false" />
+    <Property Name="cap_max" Type="float" Nullable="false" />
+    <Property Name="observacoes" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="statusId" Type="int" Nullable="false" />
+    <Property Name="createDate" Type="datetime" Nullable="false" />
+    <Property Name="updateDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TbMotorista">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="CPF" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="CNH" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="categoriaCNH" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="nascDate" Type="datetime" Nullable="false" />
+    <Property Name="statusId" Type="int" Nullable="false" />
+    <Property Name="createDate" Type="datetime" Nullable="false" />
+    <Property Name="updateDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TbTipoCombustivel">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="descricao" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="createDate" Type="datetime" Nullable="false" />
+    <Property Name="updateDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TbTipoFabricante">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="descricao" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="createDate" Type="datetime" Nullable="false" />
+    <Property Name="updateDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TbTipoStatus">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="descricao" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="createDate" Type="datetime" Nullable="false" />
+    <Property Name="updateDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TbTipoStatusCar">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="descricao" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="createDate" Type="datetime" Nullable="false" />
+    <Property Name="updateDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TbTipoUser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="descricao" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="createDate" Type="datetime" Nullable="false" />
+    <Property Name="updateDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbUser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="senha" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="tipoId" Type="int" Nullable="false" />
+    <Property Name="createDate" Type="datetime" Nullable="false" />
+    <Property Name="updateDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__TbAbastec__idCom__6A30C649">
+    <End Role="TbTipoCombustivel" Type="Self.TbTipoCombustivel" Multiplicity="1" />
+    <End Role="TbAbastecimentos" Type="Self.TbAbastecimentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TbTipoCombustivel">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TbAbastecimentos">
+        <PropertyRef Name="idCombustivel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TbAbastec__idMot__693CA210">
+    <End Role="TbMotorista" Type="Self.TbMotorista" Multiplicity="1" />
+    <End Role="TbAbastecimentos" Type="Self.TbAbastecimentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TbMotorista">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TbAbastecimentos">
+        <PropertyRef Name="idMotorista" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TbAbastec__idVei__68487DD7">
+    <End Role="TbCarro" Type="Self.TbCarro" Multiplicity="1" />
+    <End Role="TbAbastecimentos" Type="Self.TbAbastecimentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TbCarro">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TbAbastecimentos">
+        <PropertyRef Name="idVeiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TbCarro__idCombu__5EBF139D">
+    <End Role="TbTipoCombustivel" Type="Self.TbTipoCombustivel" Multiplicity="1" />
+    <End Role="TbCarro" Type="Self.TbCarro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TbTipoCombustivel">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TbCarro">
+        <PropertyRef Name="idCombustivel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TbCarro__idFabri__5FB337D6">
+    <End Role="TbTipoFabricante" Type="Self.TbTipoFabricante" Multiplicity="1" />
+    <End Role="TbCarro" Type="Self.TbCarro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TbTipoFabricante">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TbCarro">
+        <PropertyRef Name="idFabricante" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TbCarro__statusI__60A75C0F">
+    <End Role="TbTipoStatusCar" Type="Self.TbTipoStatusCar" Multiplicity="1" />
+    <End Role="TbCarro" Type="Self.TbCarro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TbTipoStatusCar">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TbCarro">
+        <PropertyRef Name="statusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TbMotoris__statu__5629CD9C">
+    <End Role="TbTipoStatus" Type="Self.TbTipoStatus" Multiplicity="1" />
+    <End Role="TbMotorista" Type="Self.TbMotorista" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TbTipoStatus">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TbMotorista">
+        <PropertyRef Name="statusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbUser__tipoId__5165187F">
+    <End Role="TbTipoUser" Type="Self.TbTipoUser" Multiplicity="1" />
+    <End Role="tbUser" Type="Self.tbUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TbTipoUser">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbUser">
+        <PropertyRef Name="tipoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BTZModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TbAbastecimentos" EntityType="Self.TbAbastecimentos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TbCarro" EntityType="Self.TbCarro" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TbMotorista" EntityType="Self.TbMotorista" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TbTipoCombustivel" EntityType="Self.TbTipoCombustivel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TbTipoFabricante" EntityType="Self.TbTipoFabricante" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TbTipoStatus" EntityType="Self.TbTipoStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TbTipoStatusCar" EntityType="Self.TbTipoStatusCar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TbTipoUser" EntityType="Self.TbTipoUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbUser" EntityType="Self.tbUser" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__TbAbastec__idCom__6A30C649" Association="Self.FK__TbAbastec__idCom__6A30C649">
+      <End Role="TbTipoCombustivel" EntitySet="TbTipoCombustivel" />
+      <End Role="TbAbastecimentos" EntitySet="TbAbastecimentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TbAbastec__idMot__693CA210" Association="Self.FK__TbAbastec__idMot__693CA210">
+      <End Role="TbMotorista" EntitySet="TbMotorista" />
+      <End Role="TbAbastecimentos" EntitySet="TbAbastecimentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TbAbastec__idVei__68487DD7" Association="Self.FK__TbAbastec__idVei__68487DD7">
+      <End Role="TbCarro" EntitySet="TbCarro" />
+      <End Role="TbAbastecimentos" EntitySet="TbAbastecimentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TbCarro__idCombu__5EBF139D" Association="Self.FK__TbCarro__idCombu__5EBF139D">
+      <End Role="TbTipoCombustivel" EntitySet="TbTipoCombustivel" />
+      <End Role="TbCarro" EntitySet="TbCarro" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TbCarro__idFabri__5FB337D6" Association="Self.FK__TbCarro__idFabri__5FB337D6">
+      <End Role="TbTipoFabricante" EntitySet="TbTipoFabricante" />
+      <End Role="TbCarro" EntitySet="TbCarro" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TbCarro__statusI__60A75C0F" Association="Self.FK__TbCarro__statusI__60A75C0F">
+      <End Role="TbTipoStatusCar" EntitySet="TbTipoStatusCar" />
+      <End Role="TbCarro" EntitySet="TbCarro" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TbMotoris__statu__5629CD9C" Association="Self.FK__TbMotoris__statu__5629CD9C">
+      <End Role="TbTipoStatus" EntitySet="TbTipoStatus" />
+      <End Role="TbMotorista" EntitySet="TbMotorista" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbUser__tipoId__5165187F" Association="Self.FK__tbUser__tipoId__5165187F">
+      <End Role="TbTipoUser" EntitySet="TbTipoUser" />
+      <End Role="tbUser" EntitySet="tbUser" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

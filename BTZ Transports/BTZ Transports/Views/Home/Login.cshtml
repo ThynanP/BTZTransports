@@ -1,0 +1,62 @@
+﻿@model BTZ_Transports.Models.tbUser
+@{
+    ViewBag.Title = "Login";
+}
+<h2>Login</h2>
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    if (@ViewBag.Message != null)
+    {
+        <div style="border:1px solid red">
+            @ViewBag.Message
+        </div>
+    }
+    <table>
+        <tr>
+            <td>@Html.LabelFor(a => a.usuario)</td>
+            <td>@Html.TextBoxFor(a => a.usuario)</td>
+            <td>@Html.ValidationMessageFor(a => a.usuario)</td>
+        </tr>
+        <tr>
+            <td> @Html.LabelFor(a => a.senha)</td>
+            <td> @Html.PasswordFor(a => a.senha) </td>
+            <td> @Html.ValidationMessageFor(a => a.senha) </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Login" />
+            </td>
+            <td></td>
+        </tr>
+    </table>
+}
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<style>
+    input[type=text], input[type=Password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type=submit] {
+        width: 150px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type=submit] {
+        background-color: #45a049;
+    }
+</style>

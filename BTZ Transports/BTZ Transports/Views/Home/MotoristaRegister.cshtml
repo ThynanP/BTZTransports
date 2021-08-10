@@ -1,0 +1,145 @@
+﻿@model BTZ_Transports.Models.MotoristaDTO
+@{
+    ViewBag.Title = "Motorista";
+}
+
+<h2>Motorista</h2>
+@using (Html.BeginForm("SaveMotorista", "Home", FormMethod.Post, new { id = "motoristas" }))
+{
+    @Html.ValidationSummary(true)
+    <input type="hidden" id="id" name="id" value="@Model.id">
+    <div class="form-group">
+        <label for="id">Id do Motorista:</label>
+        <input type="number" class="form-control" id="id" name="id" disabled value="@Model.id" />
+    </div>
+    <div class="form-group">
+        <label for="nome">Nome do motorista:</label>
+        <input type="text" id="nome" required name="nome" value=@Model.nome>
+    </div>
+    <div class="form-group">
+        <label for="CPF">CPF do motorista:</label>
+        <input type="text" class="form-control" required id="CPF" name="CPF" value=@Model.CPF />
+    </div>
+    <div class="form-group">
+        <label for="preco">Categoria CNH:</label>
+        <select name="categoriaCNH" id="categoriaCNH" value=@Model.categoriaCNH>
+            <option value="ACC">ACC</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+        </select>
+        
+    </div>
+    <div class="form-group">
+        <label for="CNH">CNH do motorista:</label>
+        <input type="text" class="form-control" required id="CNH" name="CNH" value=@Model.CNH />
+    </div>
+    <div class="form-group">
+        <label for="nascDate">Data de nascimento:</label>
+        <input type="date" class="form-control" required id="nascDate" name="nascDate" value=@Model.nascDate />
+    </div>
+    <div class="form-group">
+        <label for="status">Status motorista:</label>
+        <select name="statusId" id="statusId" value=@Model.statusId>
+            @foreach (var status in Model.todosStatus)
+            {
+                <option value="@status.id">@status.nome</option>
+            }
+        </select>
+    </div>
+    if (Model.id != 0)
+    {
+        <div class="form-group">
+            <label for="createDate">Data de criação:</label>
+            <input type="datetime" class="form-control" id="createDate" name="createDate" value=@Model.createDate disabled />
+        </div>
+        <div class="form-group">
+            <label for="updateDate">Data de alteração:</label>
+            <input type="datetime" class="form-control" id="updateDate" name="updateDate" value=@Model.updateDate disabled />
+        </div>
+        <button type="button" class="btn btn-default" onclick="location.href = '@(Url.Action("DeleteMotorista", "Home", new { id = Model.id }))'">Excluir</button>
+    }
+    <button type="button" onclick="ValidaDados()">Salvar</button>
+    }
+
+<script>
+    var catCNH = '@Model.categoriaCNH';
+    var CNHSelect = document.getElementById('categoriaCNH');
+    var status = '@Model.statusId';
+    var statusSelect = document.getElementById('statusId');
+
+    for (var i, j = 0; i = CNHSelect.options[j]; j++) {
+        if (i.value == catCNH) {
+            CNHSelect.selectedIndex = j;
+            break;
+        }
+    }
+
+    for (var i, j = 0; i = statusSelect.options[j]; j++) {
+        if (i.value == status) {
+            statusSelect.selectedIndex = j;
+            break;
+        }
+    }
+
+    function ValidaDados() {
+        var CPF = document.getElementById('CPF');
+
+        if (TestaCPF(CPF.value)) {
+            document.getElementById("motoristas").submit();
+        }
+        else {
+            alert("Por favor informe CPF valido!");
+        }
+    }
+
+    function TestaCPF(strCPF) {
+        var Soma;
+        var Resto;
+        Soma = 0;
+        if (strCPF == "00000000000") return false;
+
+        for (i = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+        Resto = (Soma * 10) % 11;
+
+        if ((Resto == 10) || (Resto == 11)) Resto = 0;
+        if (Resto != parseInt(strCPF.substring(9, 10))) return false;
+
+        Soma = 0;
+        for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+        Resto = (Soma * 10) % 11;
+
+        if ((Resto == 10) || (Resto == 11)) Resto = 0;
+        if (Resto != parseInt(strCPF.substring(10, 11))) return false;
+        return true;
+    }
+    document.getElementById('nascDate').value = '@Model.nascDate.ToString("yyyy-MM-dd")';
+</script>
+
+<style>
+    input[type=text], select, input[type=number] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    button {
+        width: 150px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        button:hover {
+            background-color: #45a049;
+        }
+</style>

@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Meu Aplicativo ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" id="header">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="@(Url.Action("Index", "Home"))"><img src="https://i.ibb.co/Mnp6ywt/2021-Teste-C-BTZ-Transportes.png" alt="2021-Teste-C-BTZ-Transportes" border="0" width="200"></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Abastecimentos", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Motoristas", "Motorista", "Home")</li>
+                    <li>@Html.ActionLink("Carros", "Carros", "Home")</li>
+                    <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>
+                &copy; @DateTime.Now.Year - BTZ Transports - Endereço: Av. das Palmeiras, 40 – Maringá – PR
+                Contato: (44) 3246-4144 / (44) 99999-8888 (whats) - sac@btztransports.com.br
+                Horário de atendimento: seg/sex – 08h00 – 22h00
+            </p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+<style>
+    #header{
+        background-color: whitesmoke;
+    }
+    a:hover{
+        color: darkblue !important;
+    }
+</style>
+

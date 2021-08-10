@@ -1,0 +1,73 @@
+﻿@model BTZ_Transports.Models.CarroView
+@{
+    ViewBag.Title = "Carros";
+}
+
+<h2>Carros</h2>
+<button type="button" onclick="location.href = '@(Url.Action("CarroRegister", "Home", new { id = 0 }))'">Novo</button>
+<div class="row">
+    <table id="carros">
+        <tr>
+            <th>Id</th>
+            <th>nome</th>
+            <th>Fabricante</th>
+            <th>Ano de fabricação</th>
+            <th>Placa</th>
+            <th>Combustível</th>
+
+        </tr>
+        @foreach (var item in Model.viewCarros)
+        {
+            <tr class='clickable-row' onclick="location.href = '@(Url.Action("CarroRegister", "Home", new { id = item.id }))'">
+                <td>@item.id</td>
+                <td>@item.nome</td>
+                <td>@Model.fabricante.Where(a => a.id == item.idFabricante).FirstOrDefault().nome</td>
+                <td>@item.ano_fab</td>
+                <td>@item.placa</td>
+                <td>@Model.combustivel.Where(a => a.id == item.idCombustivel).FirstOrDefault().nome</td>
+            </tr>
+        }
+    </table>
+</div>
+<style>
+    #carros {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #carros td, #abastecimentos th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #carros tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #carros tr:hover {
+            background-color: #ddd;
+        }
+
+        #carros th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    button {
+        width: 150px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        button:hover {
+            background-color: #45a049;
+        }
+</style>

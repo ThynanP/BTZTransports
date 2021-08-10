@@ -1,0 +1,205 @@
+﻿@model BTZ_Transports.Models.AbastecimentoDTO
+@{
+    ViewBag.Title = "AbastecimentoRegister";
+}
+
+<h2>Abastecimento</h2>
+@using (Html.BeginForm("SaveAbastecimento", "Home", FormMethod.Post, new { id = "abastecimentos" }))
+{
+    @Html.ValidationSummary(true) 
+    <input type="hidden" id="id" name="id" value="@Model.id">
+    <div class="form-group">
+        <label for="id">Id do Abastecimento:</label>
+        <input type="number" class="form-control" id="id" name="id" disabled value="@Model.id" />
+    </div>
+    
+    <div class="form-group">
+        <label for="idVeiculo">Veiculo:</label>
+        <select name="idVeiculo" id="idVeiculo" value=@Model.idVeiculo onchange="ChangeCapMax()">
+            @foreach (var carro in Model.carros)
+            {
+                <option value="@carro.id">@carro.nome</option>
+            }
+        </select>
+        @foreach (var carro in Model.carros)
+        {
+            <input type="hidden" id="@carro.id" name="cap_max" value="@carro.cap_max">
+        }
+        <input type="hidden" id="cap_max" name="cap_max" value="0">
+    </div>
+    <div class="form-group">
+        <label for="idMotorista">Motorista:</label>
+        <select name="idMotorista" id="idMotorista" value=@Model.idMotorista>
+            @foreach (var motorista in Model.motoristas)
+            {
+                <option value="@motorista.id">@motorista.nome</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="idCombustivel">Tipo de combustivel:</label>
+        <select name="idCombustivel" id="idCombustivel" value=@Model.idCombustivel onchange="CalculateTotal()">
+            @foreach (var combustivel in Model.combustiveis)
+            {
+                <option value="@combustivel.id">@combustivel.nome</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" class="form-control" required id="quantidade" name="quantidade" value=@Model.quantidade onchange="CalculateTotal()" />
+    </div>
+    <div class="form-group">
+        <label for="abastecimentoDate">Data do abastecimento</label>
+        <input type="date" class="form-control" required id="abastecimentoDate" name="abastecimentoDate" value="@Model.abastecimentoDate" />
+    </div>
+    <div class="form-group">
+        <label for="observacoes">Observações:</label>
+        <textarea class="form-control" id="observacoes" name="observacoes" value=@Model.observacoes></textarea>
+    </div>
+    <input type="hidden" id="Total" name="Total" value="@Model.Total">
+    <div class="form-group">
+        <label for="Total">Total:</label>
+        <input type="text" class="form-control" id="Total" name="Total" disabled value="@Model.Total" />
+    </div>
+    if (Model.id != 0)
+    {
+        <div class="form-group">
+            <label for="createDate">Data de criação:</label>
+            <input type="datetime" class="form-control" id="createDate" name="createDate" value=@Model.createDate disabled />
+        </div>
+        <div class="form-group">
+            <label for="updateDate">Data de alteração:</label>
+            <input type="datetime" class="form-control" id="updateDate" name="updateDate" value=@Model.updateDate disabled />
+        </div>
+        <button type="button" class="btn btn-default" onclick="location.href = '@(Url.Action("DeleteAbastecimento", "Home", new { id = Model.id }))'">Excluir</button>
+    }
+    <button type="button" onclick="ValidaDados()" >Salvar</button>
+}
+<script>
+    var combustivel = '@Model.idCombustivel';
+    var combustivelSelect = document.getElementById('idCombustivel');
+    var veiculo = '@Model.idVeiculo';
+    var veiculoSelect = document.getElementById('idVeiculo');
+    var motorista = '@Model.idMotorista';
+    var motoristaSelect = document.getElementById('idMotorista');
+
+    window.onload = function () {
+        ChangeCapMax();
+    };
+
+    for (var i, j = 0; i = combustivelSelect.options[j]; j++) {
+        if (i.value == combustivel) {
+            combustivelSelect.selectedIndex = j;
+            break;
+        }
+    }
+
+    for (var i, j = 0; i = veiculoSelect.options[j]; j++) {
+        if (i.value == veiculo) {
+            veiculoSelect.selectedIndex = j;
+            break;
+        }
+    }
+
+    for (var i, j = 0; i = motoristaSelect.options[j]; j++) {
+        if (i.value == motorista) {
+            motoristaSelect.selectedIndex = j;
+            break;
+        }
+    }
+    function CalculateTotal() {
+        var quantidade = document.getElementById('quantidade');
+        var combustivelSelect = document.getElementById('idCombustivel');
+        var totaltext = document.getElementsByName("Total");
+        console.log(totaltext);
+        if (quantidade.value >= 0) {
+            if (combustivelSelect.value == 1) {
+
+                document.getElementById("Total").setAttribute('value', (quantidade.value * 4.29).toFixed(2));
+                for (var i = 0; i < totaltext.length; i++) {
+                    totaltext[i].value = (quantidade.value * 4.29).toFixed(2);
+                }
+            }else
+            if (combustivelSelect.value == 2) {
+                document.getElementById("Total").setAttribute('value', (quantidade.value * 2.99).toFixed(2));
+                for (var i = 0; i < totaltext.length; i++) {
+                    totaltext[i].value = (quantidade.value * 2.99).toFixed(2);
+                }
+            }
+            if (combustivelSelect.value == 3) {
+                document.getElementById("Total").setAttribute('value', (quantidade.value * 2.09).toFixed(2));
+                for (var i = 0; i < totaltext.length; i++) {
+                    totaltext[i].value = (quantidade.value * 2.09).toFixed(2);
+                }
+
+            }
+        }
+    }
+
+    function ChangeCapMax(){
+        var carSelect = document.getElementById('idVeiculo');
+        var cap_max = document.getElementById(carSelect.value);
+        var cap_maxHidden = document.getElementById('cap_max');
+        cap_maxHidden.value = cap_max.value;
+    }
+
+
+    function ValidaDados() {
+        var quantidade = document.getElementById('quantidade');
+        var cap_maxHidden = document.getElementById('cap_max');
+        var quant = filterFloat(quantidade.value.replace(",", "."));
+        var cap_max = filterFloat(cap_maxHidden.value.replace(",", "."));
+        var totaltext = document.getElementById("Total");
+        var total = filterFloat(totaltext.value.replace(",", "."));
+        if (quant > 0 && cap_max > 0) {
+            if (quant > cap_max) {
+                alert("Quantidade acima da capidade do veiculo! A capacidade é de: " + cap_max);
+                quantidade.focus;
+            }
+             else {
+                    console.log(document.getElementById("abastecimentos") + "teswt")
+                    document.getElementById("abastecimentos").submit();
+                }
+        }
+        else
+            if (total <= 0 || quant <= 0) {
+                alert("Por favor informe uma quantidade valida!");
+            }
+    }
+    var filterFloat = function (value) {
+        if (/^(\-|\+)?([0-9]+(\.[0-9]+)?|Infinity)$/
+            .test(value))
+            return Number(value);
+        return NaN;
+    }
+    document.getElementById('abastecimentoDate').value = '@Model.abastecimentoDate.ToString("yyyy-MM-dd")';
+</script>
+
+<style>
+    input[type=text], select, input[type=number] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    button {
+        width: 150px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        button:hover {
+            background-color: #45a049;
+        }
+</style>
+

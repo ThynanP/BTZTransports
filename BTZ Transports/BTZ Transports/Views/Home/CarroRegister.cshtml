@@ -1,0 +1,150 @@
+﻿@model BTZ_Transports.Models.CarroDTO
+@{
+    ViewBag.Title = "CarroRegister";
+}
+
+<h2>Carro</h2>
+@using (Html.BeginForm("SaveCarro", "Home", FormMethod.Post, new { id = "carros" }))
+{
+    @Html.ValidationSummary(true)
+    <input type="hidden" id="id" name="id" value="@Model.id">
+    <div class="form-group">
+        <label for="id">Id do carro:</label>
+        <input type="number" class="form-control" id="id" name="id" disabled value="@Model.id" />
+    </div>
+    <div class="form-group">
+        <label for="nome">Nome do carro:</label>
+        <input type="text" id="nome" required name="nome" value=@Model.nome>
+    </div>
+    <div class="form-group">
+        <label for="placa">placa do carro:</label>
+        <input type="text" class="form-control"required id="placa" name="placa" value=@Model.placa />
+    </div>
+    <div class="form-group">
+        <label for="preco">Tipo de combustivel do carro:</label>
+        <select name="idCombustivel" id="idCombustivel" value=@Model.idCombustivel>
+            @foreach (var combustivel in Model.combustivel)
+            {
+                <option value="@combustivel.id">@combustivel.nome</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="categoriaCNH">Fabricante:</label>
+        <select name="idFabricante" id="idFabricante" value=@Model.idFabricante>
+            @foreach (var fabricante in Model.fabricante)
+            {
+                <option value="@fabricante.id">@fabricante.nome</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="nascDate">Ano de fabricação</label>
+        <input type="text" class="form-control" required id="ano_fab" name="ano_fab" value=@Model.ano_fab />
+    </div>
+    <div class="form-group">
+        <label for="cap_max">Capacida maxima do tanque:</label>
+        <input type="number" class="form-control" required id="cap_max" name="cap_max" value=@Model.cap_max />
+    </div>
+    <div class="form-group">
+        <label for="observacoes">Observações:</label>
+        <textarea class="form-control" required id="observacoes" name="observacoes" value=@Model.observacoes></textarea>
+    </div>
+    <div class="form-group">
+        <label for="statusId">Status:</label>
+        <select name="statusId" id="statusId" value=@Model.statusId>
+            @foreach (var status in Model.TodosStatus)
+            {
+                <option value="@status.id">@status.nome</option>
+            }
+        </select>
+    </div>
+    if (Model.id != 0)
+    {
+        <div class="form-group">
+            <label for="createDate">Data de criação:</label>
+            <input type="datetime" class="form-control" id="createDate" name="createDate" value=@Model.createDate disabled />
+        </div>
+        <div class="form-group">
+            <label for="updateDate">Data de alteração:</label>
+            <input type="datetime" class="form-control" id="updateDate" name="updateDate" value=@Model.updateDate disabled />
+        </div>
+        <button type="button" class="btn btn-default" onclick="location.href = '@(Url.Action("DeleteCarro", "Home", new { id = Model.id }))'">Excluir</button>
+    }
+    <button type="submit" onclick="ValidaDados()">Salvar</button>
+}
+
+<script>
+    var combustivel = '@Model.idCombustivel';
+    var combustivelSelect = document.getElementById('idCombustivel');
+    var fabricante = '@Model.idFabricante';
+    var fabricanteSelect = document.getElementById('idFabricante');
+    var status = '@Model.statusId';
+    var statusSelect = document.getElementById('statusId');
+
+    for (var i, j = 0; i = combustivelSelect.options[j]; j++) {
+        if (i.value == combustivel) {
+            combustivelSelect.selectedIndex = j;
+            break;
+        }
+    }
+
+    for (var i, j = 0; i = fabricanteSelect.options[j]; j++) {
+        if (i.value == fabricante) {
+            fabricanteSelect.selectedIndex = j;
+            break;
+        }
+    }
+
+    for (var i, j = 0; i = statusSelect.options[j]; j++) {
+        if (i.value == status) {
+            statusSelect.selectedIndex = j;
+            break;
+        }
+    }
+    function ValidaDados() {
+        var ano_fab = document.getElementById('ano_fab');
+        var cap_max = document.getElementById('cap_max');
+        var anofab = filterFloat(ano_fab.value.replace(",", "."));
+        var capmax = filterFloat(cap_max.value.replace(",", "."));
+        if (anofab > 0 && capmax > 0) {
+            document.getElementById("carros").submit();
+        }
+        else {
+            alert("Por favor informe um ano e capacida maxima validos!");
+        }
+    }
+    var filterFloat = function (value) {
+        if (/^(\-|\+)?([0-9]+(\.[0-9]+)?|Infinity)$/
+            .test(value))
+            return Number(value);
+        return NaN;
+    }
+</script>
+
+<style>
+    input[type=text], select, input[type=number] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    button {
+        width: 150px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        button:hover {
+            background-color: #45a049;
+        }
+</style>

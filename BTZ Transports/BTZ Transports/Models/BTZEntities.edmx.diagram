@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="51f13d8b53a14360ba576a11be292470" Name="Diagram1">
+        <EntityTypeShape EntityType="BTZModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTZModel.TbAbastecimentos" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTZModel.TbCarro" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTZModel.TbMotorista" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTZModel.TbTipoCombustivel" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTZModel.TbTipoFabricante" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTZModel.TbTipoStatus" Width="1.5" PointX="1.5" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTZModel.TbTipoStatusCar" Width="1.5" PointX="3.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTZModel.TbTipoUser" Width="1.5" PointX="8.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTZModel.tbUser" Width="1.5" PointX="11" PointY="1.875" IsExpanded="true" />
+        <AssociationConnector Association="BTZModel.FK__TbAbastec__idCom__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="BTZModel.FK__TbAbastec__idMot__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="BTZModel.FK__TbAbastec__idVei__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="BTZModel.FK__TbCarro__idCombu__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="BTZModel.FK__TbCarro__idFabri__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="BTZModel.FK__TbCarro__statusI__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="BTZModel.FK__TbMotoris__statu__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="BTZModel.FK__tbUser__tipoId__5165187F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
